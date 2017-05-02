@@ -8,6 +8,12 @@
     "type": "git",
     "url": "git+https://github.com/tannerlinsley/react-form.git"
   },
+  "contributors": [
+    {
+      "name": "Stanislav Shadskiy",
+      "email": "diezz.tsk@gmail.com"
+    }
+  ],
   "keywords": [
     "react",
     "form",

@@ -8,6 +8,7 @@ const reop = d => d
 
 export const FormDefaultProps = {
   loadState: noop,
+  updateState: noop,
   defaultValues: {},
   preValidate: reop,
   validate: () => null,
@@ -57,13 +58,17 @@ export default createClass({
     this.emitChange(this.state, true)
   },
   componentWillReceiveProps (props) {
-    if (props.values === this.props.values) {
-      return
-    }
+      var _props = this.props,
+          updateState = _props.updateState;
 
-    this.setFormState({
-      values: props.values || {}
-    }, true)
+      if (props.values === this.props.values && updateState === noop) {
+          return;
+      }
+
+      var newState = updateState(this.props, this) || {
+              values: props.values || {}
+          };
+      this.setFormState(newState, true);
   },
   componentWillUnmount () {
     this.props.willUnmount(this.state, this.props, this)
